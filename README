@@ -1,0 +1,146 @@
+# Vacation Management Interface
+
+**Quick Start:**  
+1. Backend: `cd server && npm install && npm run dev`  
+2. Frontend: `cd client && npm install && npm run dev`  
+3. Open `http://localhost:5173` in your browser
+
+---
+
+## Overview
+Web application for managing vacation requests, including:
+
+- **Requester Interface**: Employees submit vacation requests and view their status.  
+- **Validator Interface**: Managers review, approve, or reject requests with optional comments.
+
+---
+
+## Features
+
+### Requester
+- Submit vacation requests (Start Date, End Date, Reason)  
+- View all submitted requests with status: Pending, Approved, Rejected
+- View everyones approved requests by calendar
+
+### Validator
+- Dashboard displaying all vacation requests  
+- Filter requests by status  
+- Approve or reject requests  
+- Provide comments on requests
+- View all requests by calendar
+- Users manegment
+
+### Backend
+- RESTful API with endpoints for creating, retrieving, approving, and rejecting requests  
+- Input validation and error handling  
+
+---
+
+## Tech Stack
+- **Frontend**: React.js, React Router, Axios  
+- **Backend**: Node.js, Express.js  
+- **Database**: PostgreSQL via Knex.js  
+- **Version Control**: Git + GitHub
+
+---
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/offircohen18/vacation-management.git
+cd vacation-management
+```
+2. Backend setup:
+```bash
+cd server
+npm install
+```
+3. Frontend setup:
+```bash
+cd ../client
+npm install
+```
+4. Database configuration:
+- Create PostgreSQL database, e.g., `vacation_management`  
+- Create `.env` in `server`:
+
+```env
+DB_CLIENT=pg
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASSWORD=offir2004
+DB_NAME=vacation_db
+DB_PORT=5433
+PORT=5000
+NODE_ENV=development
+```
+
+5. Run database migrations:
+```bash
+cd ../server
+npx knex migrate:latest
+```
+## Running the Project
+
+### Backend
+```bash
+cd server
+npm run dev
+```
+The backend will run on http://localhost:5000
+
+### Frontend
+```bash
+cd client
+npm run dev
+```
+The frontend will run on http://localhost:5173
+
+---
+
+## Database Schema
+
+**Users**
+- id (PK)  
+- name  
+- role (Requester / Validator)
+- created_at
+- updated_at
+
+**Vacation Requests**
+- id (PK)  
+- user_id (FK -> Users.id)  
+- start_date  
+- end_date  
+- reason  
+- status (Pending / Approved / Rejected)  
+- comments  
+- created_at  
+- updated_at
+
+---
+
+## Testing
+ Unit and integration tests in backend/tests
+ Run tests:
+ ```bash
+ cd server
+ npm test
+ ```
+
+---
+
+## Known Limitations
+- No authentication (predefined users)  
+- Minimal UI styling  
+- No email notifications for request status updates  
+
+---
+
+## Future Improvements
+- Authentication and role-based access  
+- Enhanced UI/UX and responsive design  
+- Email notifications  
+- Expanded test coverage
